@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>滚轮练习</title>
+    <style type="text/css">
+        #box1{
+              width:100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function(){
+            //获取id为box1的div
+            var box1 = document.getElementById("box1");
+            //我饿box1绑定鼠标滚动事件
+             box1.onmousewheel = function (event) {
+                    event = event || window.event;
+                    //判断滚轮移动方向
+                    //event.wheelDelta可以判断滚轮移动方向
+                      // event.wheelDelta;
+                    //向上滚120，向下滚-120，这个值不看大小只看正负
+                    //event.wheelDelta火狐中不支持
+                    //在火狐中使用event.detail开获取滚动方向，向上滚-3向下滚3
+                 if(event.wheelDelta>0 || event.detail<0){
+                         //向上滚box1变短
+                         box1.style.height = box1.clientHeight -10+"px";
+                 }else{
+                         //向下滚box1变短
+                     box1.style.height = box1.clientHeight +10+"px";
+                 }
+                 //当滚轮滚动时如果浏览器有滚动条，那滚动条也会随之滚动，这是浏览器的默认行为，如果不希望有此效果，可以取消
+                     return false
+                 //火狐使用addEventListener()方法绑定的函数取消不能使用return false，需要使用event.preventDefault()
+                    event.preventDefault();
+
+
+
+             };
+
+        };
+    </script>
+</head>
+<body>
+<div id="box1"></div>
+
+</body>
+</html>
